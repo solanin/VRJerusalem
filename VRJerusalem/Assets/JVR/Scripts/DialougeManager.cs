@@ -11,7 +11,7 @@ public class DialougeManager : MonoBehaviour {
 	public static List<string> subtitleContent = new List<string> ();
 	private static string displaySubtitle = "";
 	private static int nextSubtitle = 0;
-	private static GUIStyle substitleStyle = new GUIStyle();
+	private static TextMesh subtitle;
 
 	// Singleton
 	public static DialougeManager instance { get; private set; }
@@ -29,12 +29,7 @@ public class DialougeManager : MonoBehaviour {
 	void Start() {
 		gameObject.AddComponent<AudioSource> ();
 		audioSource = gameObject.GetComponent<AudioSource>();
-
-		substitleStyle.fixedWidth = Screen.width / 1.5f;
-		substitleStyle.wordWrap = true;
-		substitleStyle.alignment = TextAnchor.MiddleCenter;
-		substitleStyle.normal.textColor = Color.white;
-		substitleStyle.fontSize = 18; //Mathf.FloorToInt (Screen.height * 0.0225f);
+		subtitle = GameObject.Find ("Subtitle").GetComponent<TextMesh> ();
 	}
 
 	public static void BeginDialouge (int i) {
@@ -63,17 +58,11 @@ public class DialougeManager : MonoBehaviour {
 		return digetOnly.Replace (timeString, "");
 	}
 
-	void OnGUI() {
+	void Update() {
 		if (nextSubtitle > 0 && audioSource.isPlaying) {
-
-			// Make GUI
-			GUI.depth = -1001;
-			Vector2 size = substitleStyle.CalcSize (new GUIContent ());
-			GUI.contentColor = Color.black;
-
-			GUI.Label (new Rect (Screen.width / 2 - size.x / 2 + 1, Screen.height / 1.25f - size.y + 1, size.x, size.y), displaySubtitle, substitleStyle);
-			GUI.contentColor = Color.white;
-			GUI.Label (new Rect (Screen.width / 2 - size.x / 2, Screen.height / 1.25f - size.y, size.x, size.y), displaySubtitle, substitleStyle);
+			subtitle.text = displaySubtitle;
+		} else if (!audioSource.isPlaying) {
+			subtitle.text = "";
 		}
 
 		if (nextSubtitle < subtitleContent.Count) {
