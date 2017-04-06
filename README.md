@@ -5,4 +5,4 @@ This project takes a new spin on century old stereograph images, converting imag
 
 ## APK
 
-located [here](https://github.com/solanin/VRJerusalem/tree/master/VRJerusalem/VRJerusalem.apk)
+too big for git :(

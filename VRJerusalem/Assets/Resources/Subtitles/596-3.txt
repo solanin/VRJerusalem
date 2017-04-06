@@ -1,5 +1,2 @@
-The following is an except from Traveling in the Holy Land, through the stereoscope, a tour.
-
-The building stones of the later city have been so completely removed by the shiftless Bedouins that only traces of the foundations, level with the ground, can be found. To the left in the distance are the few buildings that make up modern Jericho. 
-
-
+000.000|The building stones have been removed over time and so that is why you can only see the traces that remain. 
+000.010|To the left in the distance are a few of the buildings that make up modern Jericho. 

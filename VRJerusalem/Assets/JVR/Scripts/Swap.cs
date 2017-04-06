@@ -6,13 +6,11 @@ public class Swap : MonoBehaviour {
 	private int current;
 	private GameObject leftImg;
 	private GameObject rightImg;
-	private AudioSource	audioSource;
 
     // Use this for initialization
     void Start () {
 		leftImg = GameObject.Find("LeftImg");
 		rightImg = GameObject.Find("RightImg");
-		audioSource = GameObject.Find("Stereograph").GetComponent<AudioSource>();
 
 		SwapImages (0);
 		current = 1;
@@ -44,7 +42,6 @@ public class Swap : MonoBehaviour {
 		leftImg.GetComponent<SpriteRenderer>().sprite = ImageData.IMAGE_L[i];
 		rightImg.GetComponent<SpriteRenderer>().sprite = ImageData.IMAGE_R[i];
 
-		audioSource.clip = ImageData.AUDIO_FULL[i];
-		audioSource.Play ();
+		ImageData.BeginDialouge (i);
 	}
 }
