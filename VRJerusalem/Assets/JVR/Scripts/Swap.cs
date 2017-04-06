@@ -26,22 +26,22 @@ public class Swap : MonoBehaviour {
 
 	void SwapImages()
 	{
-		if (current < ImageData.IMAGE_NUM.Length)
+		if (current < Data.IMAGE_NUM.Length)
 		{
 			SwapImages (current);
 		}
 
 		current++;
-		if (current >= ImageData.IMAGE_NUM.Length) {
+		if (current >= Data.IMAGE_NUM.Length) {
 			current = 0;
 		}
 	}
 
 	void SwapImages(int i)
 	{
-		leftImg.GetComponent<SpriteRenderer>().sprite = ImageData.IMAGE_L[i];
-		rightImg.GetComponent<SpriteRenderer>().sprite = ImageData.IMAGE_R[i];
+		leftImg.GetComponent<SpriteRenderer>().sprite = Data.IMAGE_L[i];
+		rightImg.GetComponent<SpriteRenderer>().sprite = Data.IMAGE_R[i];
 
-		ImageData.BeginDialouge (i);
+		DialougeManager.BeginDialouge(i);
 	}
 }
