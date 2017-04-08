@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using System.Text.RegularExpressions;
 
 public class DialougeManager : MonoBehaviour {
 	// Vars
 	private const float _RATE = 44100.0f;
+	private const int MAX_LINE_CHAR = 50;
 	private static  AudioSource audioSource;
 	public static List<float> subtitleTiming = new List<float> ();
 	public static List<string> subtitleContent = new List<string> ();
@@ -46,7 +48,7 @@ public class DialougeManager : MonoBehaviour {
 		}
 
 		// Set
-		displaySubtitle = subtitleContent[0];
+		displaySubtitle = FormatString(subtitleContent[0]);
 
 		// Play Audio
 		audioSource.clip = Data.AUDIO_FULL [i];
@@ -67,9 +69,36 @@ public class DialougeManager : MonoBehaviour {
 
 		if (nextSubtitle < subtitleContent.Count) {
 			if (audioSource.timeSamples/_RATE > subtitleTiming [nextSubtitle]) {
-				displaySubtitle = subtitleContent [nextSubtitle];
+				displaySubtitle = FormatString(subtitleContent [nextSubtitle]);
 				nextSubtitle++;
 			}
 		}
+	}
+
+	static string FormatString (string text) {
+		int charCount = 0;
+		string[] words = text.Split(" "[0]); //Split the string into seperate words
+		string result = "";
+
+		for (var index = 0; index < words.Length; index++) {
+
+			string word = words [index].Trim();
+
+			if (index == 0) {
+				result = words [0];
+			} 
+			else if (index > 0 ) {
+				charCount += word.Length + 1; //+1, because we assume, that there will be a space after every word
+				if (charCount <= MAX_LINE_CHAR) {
+					result += " " + word;
+				}
+				else {
+					charCount = 0;
+					result += "\n " + word;
+				}
+			}
+		}
+
+		return result;
 	}
 }
