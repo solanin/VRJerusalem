@@ -31,7 +31,7 @@ public class Data : MonoBehaviour {
 		for (int i = 0; i < IMAGE_NUM.Length; i++) {
 			IMAGE_L [i] = Resources.Load<Sprite> ("Images/" + IMAGE_NUM [i] + "/" + IMAGE_NUM [i] + "_L");
 			IMAGE_R [i] = Resources.Load<Sprite> ("Images/" + IMAGE_NUM [i] + "/" + IMAGE_NUM [i] + "_R");
-			AUDIO_FULL [i] = Resources.Load<AudioClip> ("Audio/" + IMAGE_NUM [i]);
+			AUDIO_FULL [i] = Resources.Load<AudioClip> ("Audio/Audio/" + IMAGE_NUM [i]);
 			SUBTITLES [i] = Resources.Load<TextAsset> ("Subtitles/" + IMAGE_NUM [i]);
 		}
 	}
