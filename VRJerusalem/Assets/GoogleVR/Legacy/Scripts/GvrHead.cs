@@ -107,11 +107,49 @@ public class GvrHead : MonoBehaviour {
 
     if (trackRotation) {
       var rot = GvrViewer.Instance.HeadPose.Orientation;
-      if (target == null) {
-        transform.localRotation = rot;
-      } else {
-        transform.rotation = target.rotation * rot;
-      }
+            if (target == null)
+            {
+                if (rot.eulerAngles.y >= 30.0f && rot.eulerAngles.y < 185.0f)
+                {
+                    rot.eulerAngles = new Vector3(
+                        rot.eulerAngles.x,
+                        30.0f,
+                        rot.eulerAngles.z
+                        );
+                }
+                else if(rot.eulerAngles.y <= 330.0f && rot.eulerAngles.y > 185.0f)
+                {
+                    rot.eulerAngles = new Vector3(
+                        rot.eulerAngles.x,
+                        330.0f,
+                        rot.eulerAngles.z
+                        );
+                }
+                Debug.Log(rot.eulerAngles.x);
+                
+                if (rot.eulerAngles.x >= 32.0f && rot.eulerAngles.x < 185.0f)
+                {
+                    rot.eulerAngles = new Vector3(
+                        32.0f,
+                        rot.eulerAngles.y,
+                        rot.eulerAngles.z
+                        );
+                }
+                else if (rot.eulerAngles.x <= 328.0f && rot.eulerAngles.x > 185.0f)
+                {
+                    rot.eulerAngles = new Vector3(
+                        328.0f,
+                        rot.eulerAngles.y,
+                        rot.eulerAngles.z
+                        );
+                }
+                
+                transform.localRotation = rot;
+            }
+            else
+            {
+                transform.rotation = target.rotation * rot;
+            }
     }
 
     if (trackPosition) {
