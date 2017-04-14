@@ -22,7 +22,7 @@ public class DialougeManager : MonoBehaviour {
 			Destroy (gameObject);
 		}
 		instance = this;
-		DontDestroyOnLoad (gameObject);
+		//DontDestroyOnLoad (gameObject);
 	}
 
 
@@ -58,6 +58,27 @@ public class DialougeManager : MonoBehaviour {
 		audioSource.Play ();
 	}
 
+	public static void BeginDialouge (TextAsset text, AudioClip sound) {
+		subtitleTiming = new List<float> ();
+		subtitleContent = new List<string> ();
+		nextSubtitle = 0;
+
+		// Parse
+		string[] fileLines = text.text.Split('\n');
+		for (int ent = 0; ent < fileLines.Length; ent++) {
+			string[] splitTemp = fileLines [ent].Split ('|');
+			subtitleTiming.Add (float.Parse(CleanTimeString(splitTemp [0])));
+			subtitleContent.Add (splitTemp [1]);
+		}
+
+		// Set
+		displaySubtitle = subtitleContent[0];
+
+		// Play Audio
+		audioSource.clip = sound;
+		audioSource.Play ();
+	}
+
 	private static string CleanTimeString(string timeString) {
 		Regex digetOnly = new Regex (@"[^\d+(\.\d+)*$]");
 		return digetOnly.Replace (timeString, "");
@@ -82,5 +103,9 @@ public class DialougeManager : MonoBehaviour {
 				nextSubtitle++;
 			}
 		}
+	}
+
+	public static bool isPlaying() {
+		return audioSource.isPlaying;
 	}
 }
