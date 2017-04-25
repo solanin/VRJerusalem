@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using System.Text.RegularExpressions;
 
 public class DialougeManager : MonoBehaviour {
 	// Vars
 	private const float _RATE = 44100.0f;
+	private const int MAX_LINE_CHAR = 25;
 	private static  AudioSource audioSource;
 	public static List<float> subtitleTiming = new List<float> ();
 	public static List<string> subtitleContent = new List<string> ();
 	private static string displaySubtitle = "";
 	private static int nextSubtitle = 0;
-	private static GUIStyle substitleStyle = new GUIStyle();
+	private static TextMesh subtitleL;
+	private static TextMesh subtitleR;
 
 	// Singleton
 	public static DialougeManager instance { get; private set; }
@@ -29,12 +32,12 @@ public class DialougeManager : MonoBehaviour {
 	void Start() {
 		gameObject.AddComponent<AudioSource> ();
 		audioSource = gameObject.GetComponent<AudioSource>();
+		subtitleL = GameObject.Find ("SubtitleL").GetComponent<TextMesh> ();
+		subtitleR = GameObject.Find ("SubtitleR").GetComponent<TextMesh> ();
+	}
 
-		substitleStyle.fixedWidth = Screen.width / 1.5f;
-		substitleStyle.wordWrap = true;
-		substitleStyle.alignment = TextAnchor.MiddleCenter;
-		substitleStyle.normal.textColor = Color.white;
-		substitleStyle.fontSize = 18; //Mathf.FloorToInt (Screen.height * 0.0225f);
+	public static bool isPlaying() {
+		return audioSource.isPlaying;
 	}
 
 	public static void BeginDialouge (int i) {
@@ -51,7 +54,7 @@ public class DialougeManager : MonoBehaviour {
 		}
 
 		// Set
-		displaySubtitle = subtitleContent[0];
+		displaySubtitle = FormatString(subtitleContent[0]);
 
 		// Play Audio
 		audioSource.clip = Data.AUDIO_FULL [i];
@@ -72,7 +75,7 @@ public class DialougeManager : MonoBehaviour {
 		}
 
 		// Set
-		displaySubtitle = subtitleContent[0];
+		displaySubtitle = FormatString(subtitleContent[0]);
 
 		// Play Audio
 		audioSource.clip = sound;
@@ -84,28 +87,47 @@ public class DialougeManager : MonoBehaviour {
 		return digetOnly.Replace (timeString, "");
 	}
 
-	void OnGUI() {
+	void Update() {
 		if (nextSubtitle > 0 && audioSource.isPlaying) {
-
-			// Make GUI
-			GUI.depth = -1001;
-			Vector2 size = substitleStyle.CalcSize (new GUIContent ());
-			GUI.contentColor = Color.black;
-
-			GUI.Label (new Rect (Screen.width / 2 - size.x / 2 + 1, Screen.height / 1.25f - size.y + 1, size.x, size.y), displaySubtitle, substitleStyle);
-			GUI.contentColor = Color.white;
-			GUI.Label (new Rect (Screen.width / 2 - size.x / 2, Screen.height / 1.25f - size.y, size.x, size.y), displaySubtitle, substitleStyle);
+			subtitleL.text = displaySubtitle;
+			subtitleR.text = displaySubtitle;
+		} else if (!audioSource.isPlaying) {
+			subtitleL.text = "";
+			subtitleR.text = "";
 		}
 
 		if (nextSubtitle < subtitleContent.Count) {
 			if (audioSource.timeSamples/_RATE > subtitleTiming [nextSubtitle]) {
-				displaySubtitle = subtitleContent [nextSubtitle];
+				displaySubtitle = FormatString(subtitleContent [nextSubtitle]);
 				nextSubtitle++;
 			}
 		}
 	}
 
-	public static bool isPlaying() {
-		return audioSource.isPlaying;
+	static string FormatString (string text) {
+		int charCount = 0;
+		string[] words = text.Split(" "[0]); //Split the string into seperate words
+		string result = "";
+
+		for (var index = 0; index < words.Length; index++) {
+
+			string word = words [index].Trim();
+
+			if (index == 0) {
+				result = words [0];
+			} 
+			else if (index > 0 ) {
+				charCount += word.Length + 1; //+1, because we assume, that there will be a space after every word
+				if (charCount <= MAX_LINE_CHAR) {
+					result += " " + word;
+				}
+				else {
+					charCount = 0;
+					result += "\n " + word;
+				}
+			}
+		}
+
+		return result;
 	}
 }
