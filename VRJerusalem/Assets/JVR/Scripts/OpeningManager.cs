@@ -21,6 +21,8 @@ public class OpeningManager : MonoBehaviour {
 		{
 			isPlaying = true;
 			DialougeManager.BeginDialouge(SubtitleIntro, AudioIntro);
+		} else if (Input.GetMouseButtonDown(0) && isPlaying) {
+			Application.LoadLevel ("main");
 		}
 
 		// Move on when done
