@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 public class DialougeManager : MonoBehaviour {
 	// Vars
 	private const float _RATE = 44100.0f;
-	private const int MAX_LINE_CHAR = 25;
+	private const int MAX_LINE_CHAR = 50;
 	private static  AudioSource audioSource;
 	public static List<float> subtitleTiming = new List<float> ();
 	public static List<string> subtitleContent = new List<string> ();
