@@ -1,3 +1,5 @@
 000.000|Plain of the Jordan--southeast from the ruins of ancient Jericho
-005.000|Fishman tells us human figures were absent from early daguerreotypes mainly due to the technical constraints of taking and developing the images.
-012.500|Unlike their more romantic or idealized painted versions, Holy Land religious sites often differed from their imagined appearance; at times they were barely visible or decaying.
+005.000|Fishman tells us human figures were absent from early daguerreotypes 
+008.700|mainly due to the technical constraints of taking and developing the images.
+012.500|Unlike their more romantic or idealized painted versions, Holy Land religious sites often 
+018.600|differed from their imagined appearance; at times they were barely visible or decaying.

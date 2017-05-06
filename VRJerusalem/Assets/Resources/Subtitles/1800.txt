@@ -1,4 +1,7 @@
 000.000|Jericho Road, Near the Samaritan's Inn 
-003.000|Fishman points out that in early photos of the Holy Land figures are often shown candidly in the context of a larger space. 
-010.000|This is a change from the typical 19th century tendencies to shoot either “empty” landscape or exotic, character-type portraits. 
-017.700|In this image we see a more candid photo of people moving in the public space, unaware of their photographer’s presence. 
+003.000|Fishman points out that in early photos of the Holy Land figures 
+006.000|are often shown candidly in the context of a larger space. 
+010.000|This is a change from the typical 19th century tendencies to shoot 
+013.500|either “empty” landscape or exotic, character-type portraits. 
+017.700|In this image we see a more candid photo of people moving in the public space, 
+021.800|unaware of their photographer’s presence. 
