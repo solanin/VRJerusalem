@@ -1,7 +1,11 @@
 000.000|Stereographs from “In Sight: Seeing the People of the Holy Land”
-005.000|An exhibit of selections from the Lenkin Family Collection of Photography at the University of Pennsylvania
+005.000|An exhibit of selections from the Lenkin Family Collection of Photography
+008.500|at the University of Pennsylvania
 011.000|A project by students of RIT.
 013.000|
-016.000|To Western audiences, the Holy Land was the stage where the stories of the Old and New Testaments unfolded, where the self-narrative of the Christian tradition was born.
-025.500|To most, the Holy Land was an idea, a subject of belief, inspiration and imagination, nourished by extensive religious literature and art.
-035.000|The advent of photography in the mid-19th century allowed, for the very first time, for concrete and objective documentation of the material existence of the Holy Land and its present condition.
+016.000|To Western audiences, the Holy Land was the stage where the stories of the Old and 
+020.500|New Testaments unfolded, where the self-narrative of the Christian tradition was born.
+025.500|To most, the Holy Land was an idea, a subject of belief, inspiration and imagination,
+031.500|nourished by extensive religious literature and art.
+035.000|The advent of photography in the mid-19th century allowed, for the very first time, for concrete
+041.000|and objective documentation of the material existence of the Holy Land and its present condition.
