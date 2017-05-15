@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Manages the Openening Scene
+
 public class OpeningManager : MonoBehaviour {
 
 	private AudioClip AudioIntro;
@@ -10,6 +12,7 @@ public class OpeningManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		// Load intro data
 		AudioIntro = Resources.Load<AudioClip> ("Audio/Audio/Intro");
 		SubtitleIntro = Resources.Load<TextAsset> ("Subtitles/Intro");
 		isPlaying = false;
@@ -19,9 +22,11 @@ public class OpeningManager : MonoBehaviour {
 		// Start on press of screen
 		if (Input.GetMouseButtonDown(0) && !isPlaying)
 		{
+			// Start playing dialogue
 			isPlaying = true;
 			DialougeManager.BeginDialouge(SubtitleIntro, AudioIntro);
 		} else if (Input.GetMouseButtonDown(0) && isPlaying) {
+			// Move on when done
 			Application.LoadLevel ("main");
 		}
 
