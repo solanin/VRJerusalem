@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// No longer used in our app
+// Was used for rectile management and to constain recticle to screen
+
 public class ReticleManager : MonoBehaviour {
 
     [SerializeField]
