@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// No longer used in App
+// Zooms in/out of image on Z and X key press
+
 public class ZoomManager : MonoBehaviour {
 
 	// Update is called once per frame
