@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// No longer in use by the app
+// Originally used to adjust the left and rigt cameras
+
 public class AdjustVRCameras : MonoBehaviour {
 
     private bool hasUpdated;
