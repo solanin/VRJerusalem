@@ -21,8 +21,8 @@ public class Swap : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {k
-		// Swap image on clic
+	void Update () {
+		// Swap image on click
         if (Input.GetMouseButtonDown(0))
         {
             SwapImages();
