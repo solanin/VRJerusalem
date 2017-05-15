@@ -4,6 +4,9 @@ using UnityEngine;
 using System;
 using System.Text.RegularExpressions;
 
+// Singleton Class
+// Manages the Audio and Subtitles
+
 public class DialougeManager : MonoBehaviour {
 	// Vars
 	private const float _RATE = 44100.0f;
@@ -30,16 +33,21 @@ public class DialougeManager : MonoBehaviour {
 
 
 	void Start() {
+		// Create Audio Source
 		gameObject.AddComponent<AudioSource> ();
 		audioSource = gameObject.GetComponent<AudioSource>();
+		
+		// Find left and right subtitles
 		subtitleL = GameObject.Find ("SubtitleL").GetComponent<TextMesh> ();
 		subtitleR = GameObject.Find ("SubtitleR").GetComponent<TextMesh> ();
 	}
 
+	// is the audio source playing something?
 	public static bool isPlaying() {
 		return audioSource.isPlaying;
 	}
 
+	// Play a dialog clip from Data and show subtitles
 	public static void BeginDialouge (int i) {
 		subtitleTiming = new List<float> ();
 		subtitleContent = new List<string> ();
@@ -61,6 +69,7 @@ public class DialougeManager : MonoBehaviour {
 		audioSource.Play ();
 	}
 
+	// Play a given clip with given subtitles
 	public static void BeginDialouge (TextAsset text, AudioClip sound) {
 		subtitleTiming = new List<float> ();
 		subtitleContent = new List<string> ();
@@ -82,11 +91,13 @@ public class DialougeManager : MonoBehaviour {
 		audioSource.Play ();
 	}
 
+	// cleans the time string in the subtitle file
 	private static string CleanTimeString(string timeString) {
 		Regex digetOnly = new Regex (@"[^\d+(\.\d+)*$]");
 		return digetOnly.Replace (timeString, "");
 	}
-
+	
+	// Updates the subtitles on screen
 	void Update() {
 		if (nextSubtitle > 0 && audioSource.isPlaying) {
 			subtitleL.text = displaySubtitle;
@@ -104,6 +115,7 @@ public class DialougeManager : MonoBehaviour {
 		}
 	}
 
+	// Formats the subtitle properly
 	static string FormatString (string text) {
 		int charCount = 0;
 		string[] words = text.Split(" "[0]); //Split the string into seperate words
