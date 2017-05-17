@@ -1,6 +1,6 @@
-## How to Add/Swap images to the app
+# How to Add/Swap images to the app
 
-(For example I will be using (this sterograph)[http://dla.library.upenn.edu/dla/holyland/detail.html?id=HOLYLAND_lenkin_590]) 
+(For example I will be using [this sterograph](http://dla.library.upenn.edu/dla/holyland/detail.html?id=HOLYLAND_lenkin_590) )
 
 1. Add the images to the project
 
